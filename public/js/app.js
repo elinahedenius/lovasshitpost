@@ -9,3 +9,4 @@ class Post extends HTMLDivElement{
 }
 
 body.customElements.define('post-element', class extends HTMLDivElement{});
+ls
