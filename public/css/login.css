@@ -1,0 +1,27 @@
+body{
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+#loginContainer{
+  display: flex;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+#password{
+  width: 287px;
+  margin: 5px;
+  height: 30px;
+}
+
+#submit{
+  width: 300px;
+  margin: 5px;
+  padding: 5px;
+}
