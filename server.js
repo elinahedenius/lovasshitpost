@@ -41,11 +41,20 @@ app.get('/editor', function(req, res){
     res.sendFile(__dirname + '/public/editor.html');
   }
   if(loggedIn == false){
-    res.sendFile(__dirname + '/public/index.html')
+    res.redirect('/')
   }
 });
 
 io.sockets.on('connection', function(socket){
+
+  //load content
+  socket.on('loadContent', () => {
+    db.query("select title, content from posts", function (err, res, fields) {
+      if (err) throw err;
+      io.sockets.emit('loadedContent', {res: res});
+    })
+  })
+
   //Login
   socket.on('process login', function(data){
     db.query("select * from users where username = 'lova'", function (err, result, fields){
@@ -61,6 +70,9 @@ io.sockets.on('connection', function(socket){
         loggedIn = false;
         attemptsLeft = attemptsLeft - 1;
         console.log('wrong password')
+        if(attemptsLeft == -1){
+          io.sockets.emit('tooManyAttempts');
+        }
         console.log(attemptsLeft)
         io.sockets.emit('failure!', {msg: attemptsLeft});
       }
@@ -70,5 +82,15 @@ io.sockets.on('connection', function(socket){
   //Logout
   socket.on('logout', function(){
     loggedIn = false;
+  });
+
+  //save new post
+  socket.on('save', ({packet}) => {
+    var sql = 'insert into posts (title, content) values ?'
+    var values = [[packet[0], packet[1]]];
+    db.query(sql, [values], function(err, result){
+      if (err) throw err;
+      console.log('ok');
+    });
   });
 });

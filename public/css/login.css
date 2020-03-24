@@ -3,14 +3,21 @@ body{
   justify-content: center;
   align-items: center;
   margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: sans-serif;
+}
+
+p{
+  font-size: 12pt;
 }
 
 #loginContainer{
-  display: flex;
+  display: block;
   width: 300px;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 200px;
   margin: 0;
 }
 

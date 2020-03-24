@@ -1,0 +1,52 @@
+body{
+  margin: 0;
+  display: grid;
+  height: 100vh;
+  width: 100vw;
+}
+
+#editorContainer{
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
+  height: 95vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#editor{
+  height: 90vh;
+  width: 95vw;
+  background-color: white;
+  border-radius: 4px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 10px 10px 100px; 
+}
+
+#newContent{
+  height: 98%;
+  width: 90%;
+  border: none;
+  resize: none;
+  outline: 0px solid transparent;
+  font-family: monospace;
+  font-size: 12pt;
+  overflow-y: hidden;
+}
+
+#buttonContainer{
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 5vh;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+  margin: 5px;
+}
