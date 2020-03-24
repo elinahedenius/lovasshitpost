@@ -31,7 +31,7 @@ $(function(){
   })
 
   //The buttons in the editor
-  $editor.submit(function(e){
+  $save.click(function(e){
     e.preventDefault();
     var packet = [$newTitle.val(), $newContent.val()];
     socket.emit('save', {packet});

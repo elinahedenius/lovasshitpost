@@ -4,6 +4,7 @@ var http = require('http').createServer(app);
 var io = require('socket.io').listen(http);
 var mysql = require('mysql');
 var tools = require('./tools.js');
+const bcrypt = require('bcrypt'); 
 
 //create a mysql connection
 var db = mysql.createConnection({
@@ -49,7 +50,7 @@ io.sockets.on('connection', function(socket){
 
   //load content
   socket.on('loadContent', () => {
-    db.query("select title, content from posts", function (err, res, fields) {
+    db.query("select title, content from posts order by id desc", function (err, res, fields) {
       if (err) throw err;
       io.sockets.emit('loadedContent', {res: res});
     })
