@@ -30,6 +30,7 @@ $(function(){
     $editor.show();
   })
 
+  //The buttons in the editor
   $editor.submit(function(e){
     e.preventDefault();
     var packet = [$newTitle.val(), $newContent.val()];
@@ -38,6 +39,10 @@ $(function(){
     $newTitle.val('');
     $newContent.val('');
   })
+
+  $('#cancelBtn').click(function(){
+    $editor.hide();
+  });
 
   //Login page
   socket.on('success', function(){
@@ -55,7 +60,7 @@ $(function(){
   });
 });
 
-$(function loadContent(){
+function loadContent(){
   var socket = io.connect();
   $(document).ready(function(){
     socket.emit('loadContent');
@@ -64,4 +69,4 @@ $(function loadContent(){
     console.log(res);
     return loadPostsToPage(res);
   });
-});
+}

@@ -86,8 +86,13 @@ io.sockets.on('connection', function(socket){
 
   //save new post
   socket.on('save', ({packet}) => {
+    var title = packet[0];
+    var content = packet[1];
+    if(title == ''){
+      title = 'untitled'
+    }
     var sql = 'insert into posts (title, content) values ?'
-    var values = [[packet[0], packet[1]]];
+    var values = [[title, content]];
     db.query(sql, [values], function(err, result){
       if (err) throw err;
       console.log('ok');
